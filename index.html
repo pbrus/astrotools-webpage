@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Utility astrotools</title>
+    <meta name="description" content="astrotools">
+    <meta name="keywords" content="astrophysics, programing, software">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/astrotools.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/fontello.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700%7CRoboto:400,700%7CSource+Code+Pro:500%7CVarela+Round&amp;subset=latin-ext" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header id="home" class="header">
+        <div class="page-title"><h1 class="animated fadeInUp">Astrotools</h1></div>
+        <button id="menu" class="menu">
+            <span class="icon-menu" aria-hidden="true"></span>
+            <span class="visuallyhidden">Menu</span>
+        </button>
+        <nav>
+            <h2 class="visuallyhidden">Navigation</h2>
+            <ol class="ol-nav">
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#" class="progmenu">Programs</a>
+                    <ul class="ul-nav" id="submenu">
+                        <li><a href="#demulos" class="progmenu">Demulos</a></li>
+                        <li><a href="#quiz" class="progmenu">Astro Quiz</a></li>
+                        <li><a href="#sigma" class="progmenu">Sigma clipping</a></li>
+                        <li><a href="#phstd" class="progmenu">Photometric<br>standardization</a></li>
+                        <li><a href="#intdgrm" class="progmenu">Interactive<br>CMD and CCD</a></li>
+                        <li><a href="#idxy" class="progmenu">Identification<br>of stars by XY</a></li>
+                    </ul>
+                </li>
+                <li><a href="#email">Contact</a></li>
+            </ol>
+        </nav>
+        <div class="hd-all">
+            <div class="hd-left animated bounceInDown">
+                <span id="hd-about" class="icon-code hd-icons" aria-hidden="true"></span><br>
+                <p class="animated jello">Useful software<br>for astrophysicists</p>
+            </div>
+            <div class="hd-right animated bounceInDown">
+                <span id="hd-tech" class="icon-cogs hd-icons" aria-hidden="true"></span><br>
+                <p>Bash, Unix tools<br>C, C++, Python, PHP</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <aside class="forfree">
+            <div id="ff-left" class="animated"><p>Feel free to use&hellip;</p></div>
+            <div id="ff-right" class="animated"><p>the <span style="color: #003471">astro</span>tools!</p></div>
+        </aside>
+        <article id="demulos" class="programs">
+            <div class="hd-art">
+                <h2>Demulos</h2>
+                <div class="prolang">c, bash, awk, python</div>
+            </div>
+            <p>
+                Demulos is an acronym for <span class="font-bold">de</span>lete <span class="font-bold">mul</span>tiple
+                <span class="font-bold">o</span>bject<span class="font-bold">s</span>. This program allows to select isolated
+                objects in dense stellar fields. These objects can be used to determine the PSF model on an image where all
+                stars were found. As an input we need an image in FITS format and a text file containing a list of all stars.
+                The file must have at least the following columns:
+            </p>
+                <ol class="ol-in-art">
+                    <li><span>id_star &ndash; string value</span></li>
+                    <li><span>X coordinate &ndash; expressed by pixel</span></li>
+                    <li><span>Y coordinate &ndash; expressed by pixel</span></li>
+                    <li><span>brightness &ndash; expressed by magnitude</span></li>
+                    <li><span>error of brightness &ndash; expressed by magnitude</span></li>
+                </ol>
+            <p>
+                The order of the columns doesn't matter. The structure of the list should be defined inside the <span class="file-path">demulos.bash</span>
+                file in the <span class="font-upper-case font-italic">== set parameters ==</span> section. We just can open the script
+                in any editor and set some variables before use. If the files are prepared we can call the program:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> ./demulos.bash --list allstars.txt --image image.fits
+                </code>
+            </div>
+            <p>
+                Additionally one parameter can be also set from the command line:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> ./demulos.bash --list allstars.txt --image image.fits --diff-mag 3.6
+                </code>
+            </div>
+            <p>
+                The program creates an initial list of the brightest stars and for each star from the list calculates a modified distance:
+            </p>
+            <div class="equation">
+                <img src="img/demulos_radius_small.png" srcset="img/demulos_radius_small.png 243w, img/demulos_radius_medium.png 287w, img/demulos_radius_large.png 396w, img/demulos_radius_huge.png 595w" sizes="(min-width: 1000px) 595px, (min-width: 700px) 396px, (min-width: 500px) 287px, 243px" alt="">
+            </div>
+            <p>
+                If this distance is larger than a real distance between each of neighboring star, the star is not rejected from the initial list. If it is
+                smaller, the star must be sufficient bright to be not rejected. If difference between brightness of any neighboring star and considered
+                object is smaller than a value of the --diff-mag option, the star is removed from the list. After all the software generates the final list
+                of separated stars in the working directory. This list is stored in a text file which has the same name as the input list with added
+                <span class="font-italic">-demulos</span> suffix.
+            </p>
+            <p class="p-last">
+            </p>
+            <div class="art-foot">
+                <div class="download">
+                    <a href="https://github.com/pbrus/demulos" class="gh-link">
+                        <span class="icon-download" aria-hidden="true"></span>
+                        Download from GitHub
+                        <span class="icon-github-circled" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="tags">
+                    <ul class="ul-tags">
+                        <li>#crowded</li>
+                        <li>#fields</li>
+                        <li>#PSF model</li>
+                        <li>#stars</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <article id="quiz" class="programs">
+            <div class="hd-art">
+                <h2>Astro Quiz</h2>
+                <div class="prolang">php, twig, html5, css3</div>
+            </div>
+            <p>
+                This application, based on the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC architecture</a>,
+                is a little advanced quiz which can be used either on a single computer or on a few machines simultaneously,
+                for example connected through LAN. It is not a good idea to put Astro Quiz on the Internet due to the fact that
+                it doesn't use any popular database. All information are stored in text files and a displayed web page is only
+                an interface between a user and the quiz. The application enables to define own set of questions and scoring.
+            </p>
+            <figure class="fig">
+                <img src="img/quiz_welcome_small.png" srcset="img/quiz_welcome_small.png 260w, img/quiz_welcome_medium.png 450w, img/quiz_welcome_large.png 630w, img/quiz_welcome_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
+                <figcaption class="fig-cap">Fig. 1. Welcome screen.</figcaption>
+            </figure>
+            <p>
+                To run the application we must type <span class="web-address">localhost</span> into the web browser's address bar.
+                To start Astro Quiz we have to type a name. Each name is validated, particularly whether is duplicated.
+                On the next pages a question with possible answers are displayed. Moreover, an image can be assigned to
+                a question. In each time a sequence of the answers permutates. Let's choose one of four answers and go further.
+            </p>
+            <figure class="fig">
+                <img src="img/quiz_question_small.png" srcset="img/quiz_question_small.png 260w, img/quiz_question_medium.png 450w, img/quiz_question_large.png 630w, img/quiz_question_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
+                <figcaption class="fig-cap">Fig. 2. Panel with question.</figcaption>
+            </figure>
+            <p>
+                When we achieve the end the application will display our score. Note that all results are saved to a text file
+                which is a simple database located at the <span class="file-path">database/database</span> file. It stores usernames,
+                collected points and flags marking correctness of each question.
+            </p>
+            <figure class="fig">
+                <img src="img/quiz_results_small.png" srcset="img/quiz_results_small.png 260w, img/quiz_results_medium.png 450w, img/quiz_results_large.png 630w, img/quiz_results_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
+                <figcaption class="fig-cap">Fig. 3. Results.</figcaption>
+            </figure>
+            <p>
+                As an administrator we can look at results of all users at any time. Let's type <span class="web-address">
+                localhost/admin.php</span> into the address bar. To go further we have to enter the password which is defined
+                in the <span class="file-path">astroquiz.cfg</span> file. We can look at <a href="img/quiz_admin.png">tables</a>
+                representing scores and how users answered. Moreover, we can clean the whole database typing the password again.
+            </p>
+            <p class="p-top-margin">
+                As mentioned at the beginning we can create own quiz. To do this we have to prepare a text file with questions
+                and images in the case that questions need graphics. The structure of such text file should be following:
+            </p>
+            <div class="code code-one-col">
+                <code class="language-bash">
+                    <pre>Question<br>Answer-1<br>Answer-2<br>Answer-3<br>Answer-4<br>Correct Answer<br>Points<br>Image name<br>...</pre>
+                </code>
+            </div>
+            <p class="p-last">
+                Note that <span class="font-italic">Correct Answer</span> is an integer (1-4). <span class="font-italic">Image name</span>
+                must contain an extension, e.g. <span class="font-italic">.jpg</span>. All these files must be located at the
+                <span class="file-path">files/</span> directory. Please see demo files in this localization if you encounter any issues.
+                You can create as many quizzes as you need. The current quiz is defined in the <span class="file-path">astroquiz.cfg</span>
+                file. In this file you can also set the password for the admin panel and size of images.
+            </p>
+            <div class="art-foot">
+                <div class="download">
+                    <a href="https://github.com/pbrus/astro-quiz" class="gh-link">
+                        <span class="icon-download" aria-hidden="true"></span>
+                        Download from GitHub
+                        <span class="icon-github-circled" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="tags">
+                    <ul class="ul-tags">
+                        <li>#quiz</li>
+                        <li>#single-choice</li>
+                        <li>#test</li>
+                        <li>#points</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <article id="sigma" class="programs">
+            <div class="hd-art">
+                <h2>Sigma clipping</h2>
+                <div class="prolang">bash, awk</div>
+            </div>
+            <p>
+                This script filters data from a single text file using a particular column. As the title indicates the program uses
+                the &sigma;-clipping algorithm. Let's consider first lines of the input file and focus on seventh column:
+            </p>
+            <div class="code">
+                <pre><code># Additional information about file                <br>  1  4326.403 2276.166 0.499 0.259  1  4.1319 0.0318 84<br>  2  4128.059 1329.443 0.040 0.225  0  3.7086 0.0475 37<br>  3  4770.499 2256.309 0.346 0.169  0  4.3550 0.0404 28<br>  4  3497.437 1343.731 0.049 0.190  0  5.9597 0.0191 57</code></pre>
+            </div>
+            <p>
+                We want to choose points which are centered around the mean value. Moreover, using input parameters we can have an affect
+                on results. To do this, please call the script with some options:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> bash good_points data.lst 7 1.8 10 80
+                </code>
+            </div>
+            <p>
+                Note that the name of an input file must have a file extension. This is caused by the fact that results will be stored
+                inside a file with the same name and the <span class="font-italic">.good</span> extension. The above call means that the
+                script analyzes the input file ignoring empty lines and comments. In each iteration it calculates the mean value and the
+                standard deviation, and according to these values the program rejects outlying points. The first argument should be
+                the name of the input file. Only this argument is mandatory. The number 7 indicates a column to study. The standard
+                deviation is scaled by 1.8. The program executes 10 iterations and each iteration must use minimum 80 points. Otherwise it
+                reports that an error has occurred. Moreover, the script outputs some information on the screen:
+            </p>
+            <div class="code">
+                <pre><code>iteration   average   stand.deviation   rejected<br>    1      4.933370      0.650678           14  <br>    2      4.903270      0.542442           16  <br>    3      4.852180      0.460161            9  <br>    4      4.811320      0.417298            7  </code></pre>
+            </div>
+            <p class="p-last">
+                All lines which contain remaining points are saved to the <span class="font-italic">data.good</span> file. To see the default
+                values of the optional arguments, please call the program without any arguments. Note that this program can be a great alternative
+                to another programing languages. The Linux default software is sufficient to use the script properly, hence you don't need to
+                install additional packages.
+            </p>
+            <div class="art-foot">
+                <div class="download">
+                    <a href="https://github.com/pbrus/sigma-clipping" class="gh-link">
+                        <span class="icon-download" aria-hidden="true"></span>
+                        Download from GitHub
+                        <span class="icon-github-circled" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="tags">
+                    <ul class="ul-tags">
+                        <li>#sigma-clipping</li>
+                        <li>#rejection</li>
+                        <li>#points</li>
+                        <li>#selection</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <article id="phstd" class="programs">
+            <div class="hd-art">
+                <h2>Photometric standardization</h2>
+                <div class="prolang">python</div>
+            </div>
+            <p>
+                The program enables to make a photometric standardization. It converts instrumental magnitudes to standard values.
+                Only one input file is required. This file must contain a special format related to wavelengths of passbands. Consider
+                four passbands (there is no limitation), e.g. U, B, V, I, then the first five lines of the complete input file with
+                a header may look like (labels from a header are used to sign axes):
+            </p>
+            <div class="code">
+                <pre><code># no  U_inst  U_ierr   U_std  U_serr  B_inst  B_ierr   B_std  B_serr  V_inst  V_ierr   V_std  V_serr  I_inst  I_ierr   I_std  I_serr<br>   1 13.1877  0.0065 17.2267  0.0682 11.1404  0.0035 14.4395  0.0079  8.6193  0.0018 12.1166  0.0012  6.9774  0.0032  9.3515  0.0006<br>   4  7.6411  0.0007 11.2698  0.0008  8.1971  0.0010 11.7471  0.0010  7.8598  0.0011 11.2494  0.0007  8.1127  0.0017 10.5117  0.0011<br>   5 13.1125  0.0064 17.0435  0.0604 11.5311  0.0034 14.8228  0.0106  9.3769  0.0017 12.8460  0.0018  8.3673  0.0020 10.7696  0.0012<br>   8 14.9558  0.0232 99.9999 99.9999 12.6868  0.0046 15.8986  0.0289 10.2104  0.0015 13.6863  0.0030  8.6402  0.0013 11.0018  0.0014</code></pre>
+            </div>
+            <p>
+                The most important thing is that the sequence of consecutive columns must represent passbands with a growing wavelength.
+                Each passband is related with four values: instrumental magnitude, its error, standard magnitude, its error. If any value does't
+                exist, don't worry, it should be masked by 99.9999. Now we can call the program from a command line interface with default arguments:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> python make_std_phot.py input_file_name output_file_name
+                </code>
+            </div>
+            <p>
+                For each pair of neighboring passbands the program fits a straight line to a cloud of points with parameters A and B:
+            </p>
+            <div class="equation">
+                <img src="img/eq_small.png" srcset="img/eq_small.png 247w, img/eq_medium.png 285w, img/eq_large.png 390w, img/eq_huge.png 577w" sizes="(min-width: 1000px) 577px, (min-width: 700px) 390px, (min-width: 500px) 285px, 247px" alt="Linear standardization equation for two neighboring passbands written in LaTeX.">
+            </div>
+            <p>
+                The fitting, based on <a href="https://docs.scipy.org/doc/scipy/reference/odr.html">the orthogonal distance regression</a>, uses
+                errors from an input file to weight the data. At the end the program generates an output file with converted magnitudes for all
+                stars. Moreover, it produces a log file with parameters and PNG images showing the final fitting for each pair. The strength of
+                this program reveals when we use an interactive mode. Let's call the program again with more options:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> python make_std_phot.py input_file_name output_file_name -i 5 -s 2.0 -e -v
+                </code>
+            </div>
+            <p>
+                Now the program makes the fitting iteratively (5 times) removing points that are smaller or larger than m&plusmn;2&sigma;.
+                After all it displays an interactive window with all points and the final matched line (red). The gray line represents the initial
+                fitting. We can eliminate remaining points (blue dots) just clicking on them. The -e option helps us to identify points with large
+                errors. If you need more information, please use the -h option to display the short manual of the program.
+            </p>
+            <figure class="fig">
+                <img src="img/phtstd_small.png" srcset="img/phtstd_small.png 260w, img/phtstd_medium.png 450w, img/phtstd_large.png 630w, img/phtstd_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="Interactive window of the program. The window displays one of four panels which contains a cloud of points and the fitted straight line.">
+                <figcaption class="fig-cap">Fig. 1. Screenshot of the interactive window view.</figcaption>
+            </figure>
+            <div class="art-foot">
+                <div class="download">
+                    <a href="https://github.com/pbrus/standard-photometry" class="gh-link">
+                        <span class="icon-download" aria-hidden="true"></span>
+                        Download from GitHub
+                        <span class="icon-github-circled" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="tags">
+                    <ul class="ul-tags">
+                        <li>#photometry</li>
+                        <li>#standardization</li>
+                        <li>#magnitudes</li>
+                        <li>#passbands</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <article id="intdgrm" class="programs">
+            <div class="hd-art">
+                <h2>Interactive CMD and CCD</h2>
+                <div class="prolang">python</div>
+            </div>
+            <p>
+                This program has two purposes. The first one is an interactive identification of the same star on different color-magnitude
+                or color-color diagrams, a CMD and CCD respectively. We can make this efficiently. The second is a making images of diagrams
+                additionally marking specific groups of stars. The basic usage requires only one input file with a header and columns with
+                data. The first five lines of an input file may have the following structure (labels from a header are used to sign axes):
+            </p>
+            <div class="code">
+                <pre><code># no  U        errU     B        errB     V        errV     I        errI      U-B     errU-B    B-V     errB-V    V-I     errV-I<br>   6  17.4027  0.0084   15.3704  0.0049   13.4930  0.0017   10.2656  0.0024    2.0323  0.0097    1.8774  0.0052    3.2274  0.0029<br>  10  10.8150  0.0009   10.6881  0.0013   10.4042  0.0009   10.0376  0.0028    0.1269  0.0016    0.2839  0.0016    0.3666  0.0029<br>  12  13.9831  0.0012   13.0129  0.0011   11.8005  0.0012   10.5449  0.0027    0.9702  0.0016    1.2124  0.0016    1.2556  0.0030<br>  15  13.8146  0.0013   12.9918  0.0012   11.8464  0.0022   10.5845  0.0033    0.8228  0.0018    1.1454  0.0025    1.2619  0.0040</code></pre>
+            </div>
+            <p>
+                The input data should be prepared before use. There isn't any mechanism in the program to control a quality and correctness
+                of the data. Let's begin with the simplest call. We can plot as many diagrams as we need (in this description we'll use two
+                diagrams). Each plot will display on a separate window. Assume that we want to look at (U-B vs B-V) and (B vs B-V) diagrams
+                to identify specific stars. Now we have to correlate colors and passbands with particular columns:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> python photometric_diagrams.py input_file_name --col 12 -10 --col 12 -4
+                </code>
+            </div>
+            <p>
+                This call means that the program should read the input file and then display two windows with a CCD (10 vs 12) and CMD
+                (4 vs 12). The first argument of the --col option refers to x-coordinates while the second to y-coordinates. The minus
+                value indicates that an axis will be reversed. At least one --col option is mandatory. On the both diagrams the stars
+                are represented by gray points. Clicking on any point changes its color on red &ndash; for all windows simultaneously.
+                In this way we can identify an object on different diagrams very quickly. But this isn't the end. If we need more information
+                about the object, we should use the feedback button, which returns an appropriate line from the input file. The feedback is
+                printed to the standard output (console) in the following format:
+            </p>
+            <div class="code code-one-col">
+                <code class="language-bash">
+                    # object 1<br>6<br>17.4027<br>0.0084<br>15.3704<br>0.0049<br>13.4930<br>0.0017<br>10.2656<br>0.0024<br>2.0323<br>0.0097<br>1.8774<br>0.0052<br>3.2274<br>0.0029
+                </code>
+            </div>
+            <p>
+                Due to the fact that matplotlib defines an area around the cursor position it is possible to mark more than one object on
+                a crowded diagram. In this case returned information will contain lines of all marked stars separated by
+                <span style="font-family: 'Source Code Pro', monospace;"># object NR</span>. We can also make a snapshot of the current view
+                of diagrams in any time. There is no limitation of an amount of snapshots. All images are saved as PNG files in the working
+                directory. To make this function more useful we can bring the --grp option into play. If the first column of the input file
+                contains unique numbers of stars, we can group specific objects by different colors. The only thing we need is a simple file
+                with one column which contains numbers of particular objects, for example:
+            </p>
+            <div class="code code-one-col">
+                <code>
+                    6<br>10<br>15
+                </code>
+            </div>
+            <p>
+                A name of this file should be used as the first argument of the --grp option. The second argument specifies which color to
+                apply marking stars. Assume that we've just created two such files and we want to distinguish them on diagrams. Let's call
+                the program again:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> python photometric_diagrams.py input_file_name --col 12 -10 --col 12 -4 --grp group_file_name1 green --grp group_file_name2 yellow
+                </code>
+            </div>
+            <p>
+                More information can be found using the -h option. Note that it's possible to use the program in the wider context. For
+                a globular cluster we can display not only a CMD or CCD diagram but additionally a (RA vs DEC) plot which is a simple 2D map.
+                Only need to prepare the proper input file.
+            </p>
+            <figure class="fig">
+                <img src="img/phtdgrm_small.png" srcset="img/phtdgrm_small.png 260w, img/phtdgrm_medium.png 450w, img/phtdgrm_large.png 630w, img/phtdgrm_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="Two separated windows of the program. The windows represent color-color and color-magnitude diagrams. Different colors mark different groups of stars. Each diagram is made of the same stars coming from one input file.">
+                <figcaption class="fig-cap">Fig. 1. The CCD and CMD diagrams. Two groups are distinguished by green and yellow color. One selected star is marked by red color.</figcaption>
+            </figure>
+            <div class="art-foot">
+                <div class="download">
+                    <a href="https://github.com/pbrus/interactive-diagrams" class="gh-link">
+                        <span class="icon-download" aria-hidden="true"></span>
+                        Download from GitHub
+                        <span class="icon-github-circled" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="tags">
+                    <ul class="ul-tags">
+                        <li>#color</li>
+                        <li>#magnitude</li>
+                        <li>#diagram</li>
+                        <li>#identification</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <article id="idxy" class="programs">
+            <div class="hd-art">
+                <h2>Identification of stars by XY</h2>
+                <div class="prolang">c</div>
+            </div>
+            <p>
+                This console program allows to search for common objects in two databases by the XY coordinates. It calculates distances between points
+                and if these are less than the assumed value, it returns matched objects with the smallest separation. Seems to be simple but the program
+                reveals the power when we use its options. Let's prepare two input files where the sample may look like:
+            </p>
+            <div class="code">
+                <pre><code># Additional information about file                                      <br>1  466.569  168.972   7.8349   0.0091  463.696       8.    1.610   -0.021<br>2 1898.298  934.286   8.0603   0.0140  450.530       7.    3.093    0.134<br>3 1843.416 1815.547   8.2385   0.0661  471.096      10.    6.909   -0.835<br>4  134.138  685.132   8.6408   0.0628  448.752       9.   22.962   -0.522</code></pre>
+            </div>
+            <p>
+                The most important fact is that the first four columns (the last is optional) should have the following structure:
+            </p>
+                <ol class="ol-in-art">
+                    <li><span>id_star &ndash; as an integer number</span></li>
+                    <li><span>X coordinate &ndash; usually expressed by pixel</span></li>
+                    <li><span>Y coordinate &ndash; usually expressed by pixel</span></li>
+                    <li><span>brightness &ndash; usually expressed by magnitude</span></li>
+                </ol>
+            <p>
+                Moreover, assume that the first file has a one-line header and the second file starts from a two-line header. Let's call the program
+                with a few options:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> sdb_xy input_file_1 input_file_2 -r 2.8 -h 1 2 -o 0.4 -0.3 -m 1 -s 7
+                </code>
+            </div>
+            <p>
+                It means that the program will identify objects from two databases using their XY coordinates. The search radius was set to 2.8 px.
+                Because the input files contain headers the -h option ignores one and two first lines in the first and second input file, respectively.
+                The -o option adds an offset to the data. It just transforms coordinates from the first input file adding 0.4 to each X value and -0.3 to
+                each Y value. The -m option defines the output format. In this case the program will print 8 columns: id1, x1, y1, id2, x2, y2, r, mag1-mag2.
+                The -s option sorts the output data by the specified column. Comparing it with the -m option we see that the output will be sorted by r values.
+            </p>
+            <div class="code">
+                <pre><code>7516   631.044  1849.035    7486   631.353  1848.734   0.0910  -0.5411<br>2913   392.192  1602.625    2913   392.745  1602.352   0.1554  -0.9238<br> 300   798.892   534.707    3249   799.307   534.222   0.1856  -4.8973<br>5809  1823.539  1811.843    9182  1824.199  1811.556   0.2603  -0.5848<br> 207  1354.342   690.702   11459  1354.519   690.645   0.3298  -4.7324</code></pre>
+            </div>
+            <p class="p-last">
+                For more details please call the program with the --help option. This program is useful when we work with the DAOPHOT package. For example,
+                it helps to control lists of stars in different passbands or to prepare groups of stars to calculate the PSF model.
+            </p>
+            <div class="art-foot">
+                <div class="download">
+                    <a href="https://github.com/pbrus/search-xy-coordinates" class="gh-link">
+                        <span class="icon-download" aria-hidden="true"></span>
+                        Download from GitHub
+                        <span class="icon-github-circled" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="tags">
+                    <ul class="ul-tags">
+                        <li>#searching for</li>
+                        <li>#points</li>
+                        <li>#XY coordinates</li>
+                        <li>#common</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer class="footer">
+        <div class="left-foot">
+            <h2>Astrotools</h2>Created by Przemysław Bruś<br>
+            <address id="email">
+                <a href="mailto:brus@astro.uni.wroc.pl">Contact me</a>
+            </address>
+        </div>
+        <div class="right-foot">
+            <p>Next tool: ---</p>
+            Last update: <time datetime="2017-06-01">01 Jun 2017</time>
+        </div>
+    </footer>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#ff-left').css("display", "none");
+            $('#ff-right').css("display", "none");
+        });
+
+        $('.hd-left').mouseover(
+            function()
+            {
+                $('#hd-about').addClass('animated rubberBand');
+                $('#hd-about').parent().css("text-shadow", "2px 2px #000000");
+            }
+        )
+        $('.hd-left').parent().mouseout(
+            function()
+            {
+                $('#hd-about').parent().css("text-shadow", "none");
+                $('#hd-about').removeClass('animated rubberBand');
+            }
+        )
+        $('.hd-right').mouseover(
+            function()
+            {
+                $('#hd-tech').addClass('animated rubberBand');
+                $('#hd-tech').parent().css("text-shadow", "2px 2px #000000");
+            }
+        )
+        $('.hd-right').parent().mouseout(
+            function()
+            {
+                $('#hd-tech').parent().css("text-shadow", "none");
+                $('#hd-tech').removeClass('animated rubberBand');
+            }
+        )
+
+        $(function()
+        {
+            var pos = $('.forfree').offset().top;
+
+            $(window).scroll(
+                function()
+                {
+                    if ((pos - $(window).scrollTop()) < $(window).height()/2)
+                    {
+                        $('#ff-left').addClass("slideInLeft");
+                        $('#ff-left').css("display","block")
+                        $('#ff-right').addClass("slideInRight");
+                        $('#ff-right').css("display","block")
+                    }
+                }
+            );
+        });
+
+        $(function()
+        {
+            $('a[href*="#"]:not([href="#"])').click(function()
+            {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname)
+            {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                if (target.length)
+                {
+                $('html, body').animate(
+                {
+                    scrollTop: target.offset().top
+                }, 1000);
+                return false;
+                }
+            }
+            });
+        });
+
+        $("#menu").click(function() {
+            if ($(window).width() < 300)
+                $('head').append('<link href="css/vertical-menu.css" rel="stylesheet">');
+        });
+
+        $("nav a").click(function() {
+            if ($(window).width() < 300)
+                $('link[rel=stylesheet][href="css/vertical-menu.css"]').remove();
+        });
+
+        $('.progmenu').focusin(function() {
+                $('#submenu').addClass('vissubmenu');
+        });
+
+        $('.progmenu').focusout(function() {
+                $('#submenu').removeClass('vissubmenu');
+        });
+
+        $('.progmenu').click(function() {
+            $('#submenu').removeClass('vissubmenu');
+        });
+
+    </script>
+</body>
+</html>

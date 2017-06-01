@@ -1,0 +1,94 @@
+@media (max-width: 299px)
+{
+  header nav
+  {
+    display: inline-block;
+    z-index: 100;
+    position: absolute;
+    width: 299px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .menu
+  {
+    background-color: transparent;
+    cursor: auto;
+  }
+
+  .ol-nav
+  {
+    padding-top: 30px;
+    padding-bottom: 40px;
+    display: block;
+    clear: both;
+    background-color: rgba(36, 38, 41, 0.9);
+  }
+
+  .ol-nav > li
+  {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 4px 0;
+    height: auto;
+  }
+
+  .ol-nav > li:hover
+  {
+    background-color: transparent;
+  }
+
+  .ol-nav > li > a
+  {
+    padding: 10px 0;
+    display: inline-block;
+    width: auto;
+    border-left: none;
+  }
+
+  .ol-nav > li:hover > a, .ul-nav > li:hover > a
+  {
+    text-shadow: none;
+  }
+
+  .ol-nav > li > a:hover
+  {
+    text-shadow: 1px 1px #2a7492;
+  }
+
+  .ol-nav > li > ul
+  {
+    visibility: visible;
+    opacity: 1.0;
+    transform: scaleY(1);
+  }
+
+  .ul-nav
+  {
+    background-color: transparent;
+    position: relative;
+  }
+
+  .ul-nav > li
+  {
+    border-top: none;
+  }
+
+  .ul-nav > li:hover
+  {
+    background-color: transparent;
+  }
+
+  .ul-nav > li > a
+  {
+    width: auto;
+    display: inline-block;
+  }
+
+  .ul-nav > li > a:hover
+  {
+    text-shadow: 1px 1px #2a7492;
+  }
+}

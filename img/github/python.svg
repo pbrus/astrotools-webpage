@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="26.811111mm"
+   height="7.0555553mm"
+   viewBox="0 0 95.000001 24.999999"
+   id="svg6574"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Python.svg">
+  <defs
+     id="defs6576">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter7194"
+       x="-0.0040818076"
+       width="1.0081636"
+       y="-0.011319409"
+       height="1.0226388">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.044792179"
+         id="feGaussianBlur7196" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter7202"
+       x="-0.0039459805"
+       width="1.007892"
+       y="-0.012513938"
+       height="1.0250279">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.062789923"
+         id="feGaussianBlur7204" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="6.2473678"
+     inkscape:cx="40.560281"
+     inkscape:cy="9.9905468"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="709"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata6579">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(2.5000008e-7,-1027.3622)"
+     style="display:inline">
+    <path
+       style="fill:#406eed;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+       d="M 40.519531,0 40.59375,25 91,25 c 2.216,0 4,-1.784753 4,-4.001953 L 95,4.0019531 C 95,1.7846531 93.216,0 91,0 L 40.519531,0 Z"
+       id="rect7122"
+       transform="translate(-2.5000008e-7,1027.3622)"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#404040;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+       d="M 40.519531,0 4,0 C 1.784,0 0,1.7846531 0,4.0019531 L 0,20.998047 C 0,23.215247 1.784,25 4,25 L 40.59375,25 40.51953,0 Z"
+       id="path7186"
+       transform="translate(-2.5000008e-7,1027.3622)"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text7190"
+       y="1045.2401"
+       x="5.4384761"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter7194)"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.50000095px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#1a1a1a"
+         y="1045.2401"
+         x="5.4384761"
+         id="tspan7192"
+         sodipodi:role="line">code</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="6.4384766"
+       y="1044.2401"
+       id="text5233"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5235"
+         x="6.4384766"
+         y="1044.2401"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.50000095px;font-family:sans-serif;-inkscape-font-specification:sans-serif">code</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text7198"
+       y="1045.1949"
+       x="46.206543"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.50000095px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter7202)"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.50000095px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#1a1a1a"
+         y="1045.1949"
+         x="46.206543"
+         id="tspan7200"
+         sodipodi:role="line">Python</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.50000095px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="47.206543"
+       y="1044.1949"
+       id="text3391"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3393"
+         x="47.206543"
+         y="1044.1949"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.50000095px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff">Python</tspan></text>
+  </g>
+</svg>
