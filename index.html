@@ -93,20 +93,24 @@
                 </code>
             </div>
             <p>
-                The program creates an initial list of the brightest stars and for each star from the list calculates a modified distance:
+                The program creates an initial list of the brightest stars <span class="font-italic">(i = 1, &hellip;, N)</span> and for each star from
+                the list calculates a modified distance:
             </p>
             <div class="equation">
                 <img src="img/demulos_radius_small.png" srcset="img/demulos_radius_small.png 243w, img/demulos_radius_medium.png 287w, img/demulos_radius_large.png 396w, img/demulos_radius_huge.png 595w" sizes="(min-width: 1000px) 595px, (min-width: 700px) 396px, (min-width: 500px) 287px, 243px" alt="">
             </div>
             <p>
-                If this distance is larger than a real distance between each of neighboring star, the star is not rejected from the initial list. If it is
-                smaller, the star must be sufficient bright to be not rejected. If difference between brightness of any neighboring star and considered
-                object is smaller than a value of the --diff-mag option, the star is removed from the list. After all the software generates the final list
-                of separated stars in the working directory. This list is stored in a text file which has the same name as the input list with added
-                <span class="font-italic">-demulos</span> suffix.
+                where <span class="font-italic">Mmax</span> denotes the magnitude of the faintest star on the image. If the distance is smaller than a real
+                distance between each of neighboring star, the <span class="font-italic">i-</span>star is not rejected from the initial list. If it is
+                larger, the <span class="font-italic">i-</span>star must be sufficient bright to be not rejected. Thus, if difference between brightness
+                of any neighboring star and considered object (<span class="font-italic">i-</span>star) is smaller than a value of the --diff-mag option,
+                the star is removed from the list. After all the software generates the final list of separated stars in the working directory. This list
+                is stored in a text file which has the same name as the input list with added <span class="font-italic">-demulos</span> suffix.
             </p>
-            <p class="p-last">
-            </p>
+            <figure class="fig">
+                <img src="img/demulos_image_small.png" srcset="img/demulos_image_small.png 260w, img/demulos_image_medium.png 450w, img/demulos_image_large.png 630w, img/demulos_image_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="This picture presents a part of an image of the sky in FITS format. Red circles indicate stars chosen by means of the described software in this article.">
+                <figcaption class="fig-cap">Fig. 1. Group of stars in dense field chosen by means of the demulos.bash script.</figcaption>
+            </figure>
             <div class="art-foot">
                 <div class="download">
                     <a href="https://github.com/pbrus/demulos" class="gh-link">
@@ -488,8 +492,8 @@
             </address>
         </div>
         <div class="right-foot">
-            <p>Next tool: ---</p>
-            Last update: <time datetime="2017-06-01">01 Jun 2017</time>
+            <p>Next tool: Support for VPHAS+ fits</p>
+            Last update: <time datetime="2017-06-06">06 Jun 2017</time>
         </div>
     </footer>
     <script src="js/jquery-3.1.1.min.js"></script>
