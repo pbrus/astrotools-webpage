@@ -474,6 +474,12 @@ article a
   padding-left: 1%;
 }
 
+.ul-in-art
+{
+  list-style: square;
+  padding-left: 6%;
+}
+
 .p-last
 {
   margin-bottom: 5%;
