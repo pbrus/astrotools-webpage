@@ -63,10 +63,10 @@
             </div>
             <p>
                 This package contains a python module which allows to convert data from the
-                <a href=http://www.vphasplus.org/><span class="font-upper-case">vphas+</span></a>
+                <a href="http://www.vphasplus.org/"><span class="font-upper-case">vphas+</span></a>
                 project to more convenient formats. The data can be downloaded using the
-                <a href=http://archive.eso.org/wdb/wdb/adp/phase3_main/form?phase3_collection=VPHASplus&release_tag=2>ESO query interface</a>.
-                All data are stored in <span class="font-italic font-upper-case">fits</span> files and are divided into three groups:
+                <a href="http://archive.eso.org/wdb/wdb/adp/phase3_main/form?phase3_collection=VPHASplus&release_tag=2">ESO query interface</a>.
+                All data are stored in <span class="font-upper-case">fits</span> files and are divided into three groups:
             </p>
                 <ol class="ol-in-art ul-in-art">
                     <li><span>catalog</span></li>
@@ -74,7 +74,54 @@
                     <li><span>source_table</span></li>
                 </ol>
             <p>
-
+                Let's start from importing the module:
+            </p>
+            <div class="code">
+                <code class="language-python">
+                    >>> from vphasfits import vphaslib
+                </code>
+            </div>
+            <p>
+                Each <span class="font-italic">image</span> file represents mosaics of 32 sky pawprints. They are enclosed in multi-extension
+                <span class="font-upper-case">fits</span> files. To get one of a pawprint (here 3) we can use the following function:
+            </p>
+            <div class="code">
+                <code class="language-python">
+                    >>> vphaslib.pawprint_to_fits("filename.fits", 3)
+                </code>
+            </div>
+            <p>
+                <span class="font-italic">Source_table</span> file contains the list of stars found on an image (sky/image coordinates,
+                aperture/profile photometry, etc.). To download this data to a text file we can use the function:
+            </p>
+            <div class="code">
+                <code class="language-python">
+                    >>> vphaslib.srctbl_to_txt("filename.fits", 3)
+                </code>
+            </div>
+            <p>
+                <span class="font-italic">Catalog</span> file contains the list of stars with the standard photometry in all
+                passbands. To save this data to a text file we should use the following function:
+            </p>
+            <div class="code">
+                <code class="language-python">
+                    >>> vphaslib.catalog_to_txt("filename.fits")
+                </code>
+            </div>
+            <p>
+                The data are saved to new files located at the working directory. We can also have an influence on what keys
+                of an image header or which columns should be gathered during the saving process. To do this, please edit any
+                of three lists:
+            </p>
+            <div class="code">
+                <pre><code class="language-python">>>> vphaslib.header_keys<br>>>> vphaslib.srctbl_keys<br> >>> vphaslib.catalog_keys</code></pre>
+            </div>
+            <p class="p-last">
+                Moreover, the package contains three ready-to-use scripts. Each program can be called from the command
+                line and requires arguments (name of file, pawprint number), so anyone has a choice between how to manage
+                the data from the <a href="http://www.vphasplus.org/"><span class="font-upper-case">vphas</span>plus</a> project.
+                Unfortunately the last way doesn't allow to edit the above mentioned lists, but their default values are
+                well defined.
             </p>
             <div class="art-foot">
                 <div class="download">
@@ -214,9 +261,7 @@
                 and images in the case that questions need graphics. The structure of such text file should be following:
             </p>
             <div class="code code-one-col">
-                <code class="language-bash">
-                    <pre>Question<br>Answer-1<br>Answer-2<br>Answer-3<br>Answer-4<br>Correct Answer<br>Points<br>Image name<br>...</pre>
-                </code>
+                <pre><code class="language-bash">Question<br>Answer-1<br>Answer-2<br>Answer-3<br>Answer-4<br>Correct Answer<br>Points<br>Image name<br>...</code></pre>
             </div>
             <p class="p-last">
                 Note that <span class="font-italic">Correct Answer</span> is an integer (1-4). <span class="font-italic">Image name</span>
@@ -531,8 +576,8 @@
             </address>
         </div>
         <div class="right-foot">
-            <p>Next tool: Support for VPHAS+ fits</p>
-            Last update: <time datetime="2017-06-06">06 Jun 2017</time>
+            <p>Next tool: Unredpy</p>
+            Last update: <time datetime="2017-08-08">08 Aug 2017</time>
         </div>
     </footer>
     <script src="js/jquery-3.1.1.min.js"></script>
