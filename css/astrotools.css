@@ -86,7 +86,7 @@ header.header
 .visuallyhidden
 {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -158,6 +158,8 @@ header nav
   transition: 250ms;
   background-color: rgba(36, 38, 41, 0.9);
   width: 100%;
+  max-height: 50vh;
+  overflow-y: auto;
   opacity: 0.0;
 }
 
