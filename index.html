@@ -63,8 +63,28 @@
                 <div class="prolang">python</div>
             </div>
             <p>
-                This program allows to unredden stars on the color-color plane. To do this we need prepare two files. The first file
-                should contain only necessary information about stars:
+                This program allows to unredden stars on a color-color plane. To do this we need prepare two files. The first file
+                should contain only necessary information about stars with the following columns:
+            </p>
+                <ol class="ol-in-art">
+                    <li><span>id_star &ndash; integer number</span></li>
+                    <li><span>Xcolor &ndash; float number</span></li>
+                    <li><span>Ycolor &ndash; float number</span></li>
+                    <li><span>Xcolor error &ndash; float number</span></li>
+                    <li><span>Ycolor error &ndash; float number</span></li>
+                </ol>
+            <p>
+                The second file should contain the theoretical model of stars on that color-color plane (e.g. trace of the main
+                sequence stars) with the simple two-column structure:
+            </p>
+                <ol class="ol-in-art">
+                    <li><span>Xcolor &ndash; float number</span></li>
+                    <li><span>Ycolor &ndash; float number</span></li>
+                </ol>
+            <p>
+                Note that it's extremely important that the model must be sorted by increasing temperature. Hence it's usually enough
+                to sort data by the decreasing <span class="font-italic">Xcolor</span>. There are models which can produce hooks, for
+                example theoretical white dwarf sequences, so in such cases we must be more careful.
             </p>
             <div class="art-foot">
                 <div class="download">
