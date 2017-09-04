@@ -84,7 +84,25 @@
             <p>
                 Note that it's extremely important that the model must be sorted by increasing temperature. Hence it's usually enough
                 to sort data by the decreasing <span class="font-italic">Xcolor</span>. There are models which can produce hooks, for
-                example theoretical white dwarf sequences, so in such cases we must be more careful.
+                example theoretical white dwarf sequences, so in such cases we must be more careful. Moreover, we have to estimate
+                a value of the reddening line slope and the parameter <span class="font-bold">R</span> known as the ratio of the total
+                to selective extinction. Having two files and knowing these parameters we can call the script:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> python unred_stars.py stars.dat model.dat 0.72 3.1
+                </code>
+            </div>
+            <p>
+                For each star the program prints all intersections of the model and the reddening line passing by the star:
+            </p>
+            <div class="code">
+                <pre><code># ID x_ci y_ci x_ci0 y_ci0 E(x_ci) E(y_ci) A               <br>1  0.0480 -0.4670 -0.1457 -0.6064   0.1937  0.1394   0.6004<br>1  0.0480 -0.5070 -0.1557 -0.6536   0.2037  0.1466   0.6313<br>1  0.0480 -0.4270 -0.1357 -0.5593   0.1837  0.1323   0.5694<br>1  0.0360 -0.4670 -0.1435 -0.5962   0.1795  0.1292   0.5565</code></pre>
+            </div>
+            <p>
+                Moreover, the script takes into account errors of each color, so for particular star this approach produces nine points instead of
+                one position. Using the --min or --max option we can leave only one line for each star with a minimum or maximum value of the estimated
+                extinction.
             </p>
             <div class="art-foot">
                 <div class="download">
