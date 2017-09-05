@@ -100,10 +100,14 @@
                 <pre><code># ID x_ci y_ci x_ci0 y_ci0 E(x_ci) E(y_ci) A               <br>1  0.0480 -0.4670 -0.1457 -0.6064   0.1937  0.1394   0.6004<br>1  0.0480 -0.5070 -0.1557 -0.6536   0.2037  0.1466   0.6313<br>1  0.0480 -0.4270 -0.1357 -0.5593   0.1837  0.1323   0.5694<br>1  0.0360 -0.4670 -0.1435 -0.5962   0.1795  0.1292   0.5565</code></pre>
             </div>
             <p>
-                Moreover, the script takes into account errors of each color, so for particular star this approach produces nine points instead of
-                one position. Using the --min or --max option we can leave only one line for each star with a minimum or maximum value of the estimated
-                extinction.
+                Moreover, the script takes into account errors of each color, so for particular star this approach uses nine points instead of
+                one position. For this reason one point can generates a lot of (or zero in some cases) intersections. Using the --min or --max
+                option we can leave only one line for each star with a minimum or maximum value of the estimated extinction.
             </p>
+            <figure class="fig">
+                <img src="img/unred_small.png" srcset="img/unred_small.png 260w, img/unred_medium.png 450w, img/unred_large.png 630w, img/unred_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="This image presents a part of the color-color diagram. Gray points indicate background stars toward the Galactic Bulge. The black point mark two stars with known errors. The black line represents model of the main sequence stars. Two straight red lines show the reddening direction. Blue dots points places where the stars should be located if the interstellar extinction will disappear.">
+                <figcaption class="fig-cap">Fig. 1. For each star and its errors (black points with error bars) all intersections (blue dots) with the main sequence model (solid black line) are presented. The red lines are parallel to the reddening line.</figcaption>
+            </figure>
             <div class="art-foot">
                 <div class="download">
                     <a href="https://github.com/pbrus/unredden-stars" class="gh-link">
@@ -642,8 +646,8 @@
             </address>
         </div>
         <div class="right-foot">
-            <p>Next tool: -</p>
-            Last update: <time datetime="2017-08-29">29 Aug 2017</time>
+            <p>Next tool: Study ephem</p>
+            Last update: <time datetime="2017-09-05">05 Sep 2017</time>
         </div>
     </footer>
     <script src="js/jquery-3.1.1.min.js"></script>
