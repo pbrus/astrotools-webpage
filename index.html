@@ -28,6 +28,7 @@
                 <li>
                     <a href="#" class="progmenu">Programs</a>
                     <ul class="ul-nav progmenu" id="submenu">
+                        <li><a href="#doppler" class="progmenu">Doppler beaming</a></li>
                         <li><a href="#pyephem" class="progmenu">Study PyEphem</a></li>
                         <li><a href="#unred" class="progmenu">Unredden stars</a></li>
                         <li><a href="#vphas" class="progmenu">Vphasfits</a></li>
@@ -58,11 +59,71 @@
             <div id="ff-left" class="animated"><p>Feel free to use&hellip;</p></div>
             <div id="ff-right" class="animated"><p>the <span style="color: #003471">astro</span>tools!</p></div>
         </aside>
-        <article id="pyephem" class="programs">
+        <article id="doppler" class="programs">
             <div class="hd-art">
                 <h2>Binary doppler beaming</h2>
                 <div class="prolang">python</div>
             </div>
+            <p>
+                This software allows to determine a light curve which is caused by the mutual motions in the binary
+                system. More info can be found in <a href="https://arxiv.org/pdf/0708.2100.pdf">arXiv:0708.2100</a>.
+                We can configure any binary system. To do this we must edit the <span class="file-path">binary.conf</span>
+                file:
+            </p>
+            <div class="code code-one-col">
+                <code>[OBJECTS]<br>mass1 = 1<br>mass2 = 2<br>temperature1 = 6000<br>temperature2 = 8000<br>radius1 = 1.0<br>radius2 = 1.5<br>distance = 1000<br><br>[ORBITS]<br>sum_major_axis = 8e10<br>eccentricity = 0.4<br>longitude_node = 70.0<br>inclination = 60.0<br>...</code>
+            </div>
+            <p>
+                Comments included at the bottom of this file describe which units to use. For example masses are expressed
+                in the Solar mass. Now we can call the main script which uses <span class="font-italic">bidobe</span>
+                (<span class="font-bold">bi</span>nary <span class="font-bold">do</span>ppler <span class="font-bold">be</span>aming)
+                module:
+            </p>
+            <div class="code">
+                <code class="language-bash">
+                    $> python3 doppler_beaming.py
+                </code>
+            </div>
+            <p>
+                Note that both files must be located in the same directory. The program calculates orbits projected
+                on the sky, radial velocities of objects and a light curve which is caused by the radial motion of each object.
+            </p>
+            <figure class="fig">
+                <img src="img/orbits_small.png" srcset="img/orbits_small.png 260w, img/orbits_medium.png 450w, img/orbits_large.png 630w, img/orbits_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
+                <figcaption class="fig-cap">Fig. 1. Orbits of a binary system projected on the sky.</figcaption>
+            </figure>
+            <p>
+                The <span class="font-italic">bidobe</span> module allows to display the results on the screen, save them
+                to the <span class="font-italic">.eps</span> files or animate on the screen. We can edit last lines in
+                the <span class="file-path">doppler_beaming.py</span> file and choose one specific function for projected orbits:
+            </p>
+            <div class="code">
+                <pre><code>plot_projected_orbits(orbit1_position, orbit2_position, "AU", "AU")              <br>plot_projected_orbits(orbit1_position, orbit2_position, "AU", "AU", "orbits.eps")<br>animate_projected_orbits(orbit1_position, orbit2_position, "AU", "AU")           </code></pre>
+            </div>
+            <p>
+                We can apply the same procedure to generate different radial velocities and light curve results.
+            </p>
+            <figure class="fig">
+                <img src="img/radial_small.png" srcset="img/radial_small.png 260w, img/radial_medium.png 450w, img/radial_large.png 630w, img/radial_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
+                <figcaption class="fig-cap">Fig. 2. Radial velocities.</figcaption>
+            </figure>
+            <p>
+                Because there are different binary systems we can also manipulate distance or mass units. All
+                calculations are performed in SI units. If we want to change units we can use convert methods:
+            </p>
+            <div class="code">
+                <pre><code>orbit1_velocity = orbit1.convert_mps_to_kmps(orbit1_velocity)<br>orbit2_velocity = orbit1.convert_mps_to_kmps(orbit2_velocity)<br>time = orbit1.convert_sec_to_days(time_range)                </code></pre>
+            </div>
+            <p>
+                After that we should update axis labels of diagrams:
+            </p>
+            <div class="code">
+                <pre><code>plot_radial_velocities(time, orbit1_velocity, orbit2_velocity, "days", "km/s")</code></pre>
+            </div>
+            <figure class="fig">
+                <img src="img/curve_small.png" srcset="img/curve_small.png 260w, img/curve_medium.png 450w, img/curve_large.png 630w, img/curve_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
+                <figcaption class="fig-cap">Fig. 3. A light curve casued by the doppler beaming.</figcaption>
+            </figure>
             <div class="art-foot">
                 <div class="download">
                     <a href="https://github.com/pbrus/binary-doppler-beaming" class="gh-link">
@@ -706,8 +767,8 @@
             </address>
         </div>
         <div class="right-foot">
-            <p>Next tool: Doppler beaming</p>
-            Last update: <time datetime="2018-05-20">20 May 2018</time>
+            <p>Next tool: ---</p>
+            Last update: <time datetime="2018-07-25">25 Jul 2018</time>
         </div>
     </footer>
     <script src="js/jquery-3.1.1.min.js"></script>
