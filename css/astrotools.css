@@ -212,7 +212,7 @@ header nav
 
 .hd-left:hover, .hd-right:hover
 {
-  cursor: pointer;
+  cursor: auto;
 }
 
 .hd-left > p
