@@ -36,7 +36,7 @@
                         <li><a href="#quiz" class="progmenu">Astro Quiz</a></li>
                         <li><a href="#sigma" class="progmenu">Sigma clipping</a></li>
                         <li><a href="#phstd" class="progmenu">Photometric<br>standardization</a></li>
-                        <li><a href="#intdgrm" class="progmenu">Interactive<br>CMD and CCD</a></li>
+                        <li><a href="#intdgrm" class="progmenu">Interactive<br>diagrams</a></li>
                         <li><a href="#idxy" class="progmenu">Identification<br>of stars by XY</a></li>
                     </ul>
                 </li>
@@ -607,14 +607,14 @@
         </article>
         <article id="intdgrm" class="programs">
             <div class="hd-art">
-                <h2>Interactive CMD and CCD</h2>
+                <h2>Interactive diagrams</h2>
                 <div class="prolang">python</div>
             </div>
             <p>
-                This program has two purposes. The first one is an interactive identification of the same star on different color-magnitude
-                or color-color diagrams, a CMD and CCD respectively. We can make this efficiently. The second is a making images of diagrams
-                additionally marking specific groups of stars. The basic usage requires only one input file with a header and columns with
-                data. The first five lines of an input file may have the following structure (labels from a header are used to sign axes):
+                This program has two purposes. The first one is an interactive identification of the same points on different diagrams.
+                We can make this efficiently using as many diagrams as we wish. The second one is a making images of diagrams additionally
+                marking specific groups of stars. The basic usage requires only one input file with a header and columns with data.
+                The first five lines of an input file may have the following structure (labels from a header are used to sign axes):
             </p>
             <div class="code">
                 <pre><code># no  U        errU     B        errB     V        errV     I        errI      U-B     errU-B    B-V     errB-V    V-I     errV-I<br>   6  17.4027  0.0084   15.3704  0.0049   13.4930  0.0017   10.2656  0.0024    2.0323  0.0097    1.8774  0.0052    3.2274  0.0029<br>  10  10.8150  0.0009   10.6881  0.0013   10.4042  0.0009   10.0376  0.0028    0.1269  0.0016    0.2839  0.0016    0.3666  0.0029<br>  12  13.9831  0.0012   13.0129  0.0011   11.8005  0.0012   10.5449  0.0027    0.9702  0.0016    1.2124  0.0016    1.2556  0.0030<br>  15  13.8146  0.0013   12.9918  0.0012   11.8464  0.0022   10.5845  0.0033    0.8228  0.0018    1.1454  0.0025    1.2619  0.0040</code></pre>
@@ -622,22 +622,23 @@
             <p>
                 The input data should be prepared before use. There isn't any mechanism in the program to control a quality and correctness
                 of the data. Let's begin with the simplest call. We can plot as many diagrams as we need (in this description we'll use two
-                diagrams). Each plot will display on a separate window. Assume that we want to look at (U-B vs B-V) and (B vs B-V) diagrams
-                to identify specific stars. Now we have to correlate colors and passbands with particular columns:
+                diagrams). Each plot will be displayed on a separate window. Let's assume that we want to look at (U-B vs B-V) and (B vs B-V)
+                diagrams to identify specific stars. Now we have to connect colors and passbands with particular columns:
             </p>
             <div class="code">
                 <code class="language-bash">
-                    $> python photometric_diagrams.py input_file_name --col 12 -10 --col 12 -4
+                    $> interactive_diagrams.py input_file_name --col 12 -10 --col 12 -4
                 </code>
             </div>
             <p>
-                This call means that the program should read the input file and then display two windows with a CCD (10 vs 12) and CMD
-                (4 vs 12). The first argument of the --col option refers to x-coordinates while the second to y-coordinates. The minus
-                value indicates that an axis will be reversed. At least one --col option is mandatory. On the both diagrams the stars
-                are represented by gray points. Clicking on any point changes its color on red &ndash; for all windows simultaneously.
-                In this way we can identify an object on different diagrams very quickly. But this isn't the end. If we need more information
-                about the object, we should use the feedback button, which returns an appropriate line from the input file. The feedback is
-                printed to the standard output (console) in the following format:
+                This call means that the program should read the input file and then display two windows with a color-color diagram
+                (10 vs 12) and color-magnitude diagram (4 vs 12). The first argument of the --col option refers to x-coordinates while
+                the second one to y-coordinates. The minus value indicates that an axis's scale will be reversed. At least one --col
+                option is mandatory. In this case the stars are represented by gray points on the both diagrams. Clicking on any point
+                changes its color to red &ndash; for all windows simultaneously. In this way we can identify a particular object on different
+                diagrams very quickly. But this isn't the end. If we need more information about the object we can use the feedback button,
+                which returns an appropriate line from the input file. The feedback is printed to the standard output (console) in the
+                following format:
             </p>
             <div class="code code-one-col">
                 <code class="language-bash">
@@ -645,13 +646,13 @@
                 </code>
             </div>
             <p>
-                Due to the fact that matplotlib defines an area around the cursor position it is possible to mark more than one object on
+                Due to the fact that matplotlib defines an area around the cursor position it is possible to mark more than one point on
                 a crowded diagram. In this case returned information will contain lines of all marked stars separated by
                 <span style="font-family: 'Source Code Pro', monospace;"># object NR</span>. We can also make a snapshot of the current view
-                of diagrams in any time. There is no limitation of an amount of snapshots. All images are saved as PNG files in the working
+                of diagrams at any time. There is no limit of a number of snapshots. All images are saved to PNG files in the working
                 directory. To make this function more useful we can bring the --grp option into play. If the first column of the input file
-                contains unique numbers of stars, we can group specific objects by different colors. The only thing we need is a simple file
-                with one column which contains numbers of particular objects, for example:
+                contains unique IDs of points, we can group them by different colors. The only thing we need is a simple file with one column
+                which contains numbers of particular IDs, for example:
             </p>
             <div class="code code-one-col">
                 <code>
@@ -665,17 +666,17 @@
             </p>
             <div class="code">
                 <code class="language-bash">
-                    $> python photometric_diagrams.py input_file_name --col 12 -10 --col 12 -4 --grp group_file_name1 green --grp group_file_name2 yellow
+                    $> interactive_diagrams.py input_file_name --col 12 -10 --col 12 -4 --grp group_file_name1 green --grp group_file_name2 yellow
                 </code>
             </div>
             <p>
                 More information can be found using the -h option. Note that it's possible to use the program in the wider context. For
-                a globular cluster we can display not only a CMD or CCD diagram but additionally a (RA vs DEC) plot which is a simple 2D map.
-                Only need to prepare the proper input file.
+                a globular cluster we can display not only color-color and color-magnitude diagrams but additionally a (RA vs DEC) plot
+                which is a simple 2D map. We only need to prepare a proper input file.
             </p>
             <figure class="fig">
                 <img src="img/phtdgrm_small.png" srcset="img/phtdgrm_small.png 260w, img/phtdgrm_medium.png 450w, img/phtdgrm_large.png 630w, img/phtdgrm_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="Two separated windows of the program. The windows represent color-color and color-magnitude diagrams. Different colors mark different groups of stars. Each diagram is made of the same stars coming from one input file.">
-                <figcaption class="fig-cap">Fig. 1. The CCD and CMD diagrams. Two groups are distinguished by green and yellow color. One selected star is marked by red color.</figcaption>
+                <figcaption class="fig-cap">Fig. 1. The color-color and color-magnitude diagrams for 303 stars. Two groups are distinguished by green and yellow colors. One selected star is marked by red color.</figcaption>
             </figure>
             <div class="art-foot">
                 <div class="download">
@@ -687,9 +688,9 @@
                 </div>
                 <div class="tags">
                     <ul class="ul-tags">
-                        <li>#color</li>
-                        <li>#magnitude</li>
-                        <li>#diagram</li>
+                        <li>#interactive</li>
+                        <li>#diagrams</li>
+                        <li>#groups</li>
                         <li>#identification</li>
                     </ul>
                 </div>
