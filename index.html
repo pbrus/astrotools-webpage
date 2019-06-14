@@ -425,8 +425,8 @@
             <p>
                 To run the application we must type <span class="web-address">localhost</span> into the web browser's address bar.
                 To start Astro Quiz we have to type a name. Each name is validated, particularly whether is duplicated.
-                On the next pages a question with possible answers are displayed. Moreover, an image can be assigned to
-                a question. In each time a sequence of the answers permutates. Let's choose one of four answers and go further.
+                On the next pages a set of questions with possible answers are displayed. Moreover, images can be assigned to
+                these questions. In each time a sequence of the answers permutates. Let's choose one of four answers and go further.
             </p>
             <figure class="fig">
                 <img src="img/quiz_question_small.png" srcset="img/quiz_question_small.png 260w, img/quiz_question_medium.png 450w, img/quiz_question_large.png 630w, img/quiz_question_huge.png 900w" sizes="(min-width: 1000px) 900px, (min-width: 700px) 630px, (min-width: 500px) 450px, 260px" alt="">
@@ -449,7 +449,7 @@
             </p>
             <p class="p-top-margin">
                 As mentioned at the beginning we can create own quiz. To do this we have to prepare a text file with questions
-                and images in the case that questions need graphics. The structure of such text file should be following:
+                and images in the case that questions need graphics. The structure of such text file should look like this:
             </p>
             <div class="code code-one-col">
                 <pre><code class="language-bash">Question<br>Answer-1<br>Answer-2<br>Answer-3<br>Answer-4<br>Correct Answer<br>Points<br>Image name<br>...</code></pre>
@@ -459,7 +459,7 @@
                 must contain an extension, e.g. <span class="font-italic">.jpg</span>. All these files must be located in the
                 <span class="file-path">files/</span> directory. Please see demo files in this localization if you encounter any issues.
                 You can create as many quizzes as you need. The current quiz is defined in the <span class="file-path">astroquiz.cfg</span>
-                file. In this file you can also set the password for the admin panel and size of images.
+                file. In this file you can also set the password for the admin panel and a size of images.
             </p>
             <div class="art-foot">
                 <div class="download">
